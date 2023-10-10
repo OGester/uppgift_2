@@ -18,9 +18,9 @@ public class IncomeStorage {
         totalIncomes = new ArrayList<>();
     }
     // skapa metod lägg till inkomst i en array
-    public void addIncomeToArray(Transaction transaction) {
-        totalIncomes.add(transaction);
-        System.out.println(transaction);
+    public void addIncomeToArray(Income income) {
+        totalIncomes.add(income);
+        System.out.println(income);
 
     }
 
