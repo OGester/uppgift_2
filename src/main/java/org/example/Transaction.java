@@ -29,10 +29,9 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "amount=" + amount +
-                ", date='" + date + '\'' +
-                '}';
+        return " This transaction -> "
+                + amount +
+                ":- , date: " + date;
     }
 
 
