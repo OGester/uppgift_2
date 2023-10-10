@@ -12,22 +12,25 @@ public class IncomeStorage {
 
     FileWriter fw = new FileWriter ("src/main/income.json");
 
-    private List<Transaction> allIncomes;
+    private List<Transaction> totalIncomes;
 
     public IncomeStorage() throws IOException {
-        allIncomes = new ArrayList<>();
+        totalIncomes = new ArrayList<>();
     }
     // skapa metod lägg till inkomst i en array
-    public void addIncomeToArray(Transaction transaction) {
-        allIncomes.add(transaction);
+    public void addIncomeToArray(Transaction transaction) throws IOException {
+        totalIncomes.add(transaction);
         System.out.println("Succesfully added new income: "
-        + transaction.getDescription() + " " + transaction.getAmount() + ":-");
+        /*+ income.getCategory() + " "*/ + transaction.getAmount() + ":-");
+        gson.toJson(totalIncomes, fw);
+        fw.flush();
     }
+
 
     // skapa metod lista alla inkomster
     public void allIncomes() {
         System.out.println("This is all of your incomes:");
-        for (Transaction transaction : allIncomes) {
+        for (Transaction transaction : totalIncomes) {
             System.out.println(transaction.toString());
         }
     }
@@ -36,7 +39,8 @@ public class IncomeStorage {
 
     //skapa metod för att ta bort inkomst
     public void removeIncome(int index){
-        allIncomes.remove(index -1);
+
+        totalIncomes.remove(index -1);
         System.out.println("you removed: "); // lägg till info om borttagen inkomst
     }
 
