@@ -41,6 +41,7 @@ public class IncomeStorage {
     }
 
     //skapa metod för att ta bort inkomst
+    //plockar bort index angivet av user -1 för att hitta rätt indexplats i arraylistan då den börjar på index 0
     public void removeIncome(int input){
         totalIncomes.remove(input -1);
         System.out.println("you removed: " + totalIncomes.get(input -1));
