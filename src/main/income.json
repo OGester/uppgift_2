@@ -1,0 +1,23 @@
+{
+  "Test": {
+    "name": "Test",
+    "amount": 0.0,
+    "date": "13/10"
+  },
+  "Oskar": {
+    "name": "Oskar",
+    "amount": 0.0,
+    "date": "13/10"
+  },
+  "Tinen": {
+    "name": "Tinen",
+    "amount": 0.0,
+    "date": "13/10"
+  },
+  "Elliot": {
+    "category": "CSN",
+    "name": "Elliot",
+    "amount": 0.0,
+    "date": "13/10"
+  }
+}
