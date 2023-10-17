@@ -17,6 +17,9 @@ public class IncomeStorage {
 
     // skapa metod lägg till inkomst
     public void addIncome(Income income) {
+        allIncomes.put(income.getId(), income);
+        System.out.println("Income added");
+       /*
         try {
             if (allIncomes != null) {
                 allIncomes.put(income.getId(), income);
@@ -25,6 +28,8 @@ public class IncomeStorage {
         } catch (Exception e) {
             System.out.println("null...");
         }
+
+        */
     }
 
 
@@ -38,7 +43,7 @@ public class IncomeStorage {
 
 
     //Läs in från Json
-    public void readFile() throws IOException {
+    public void readIncomeFile() throws IOException {
         Type type = new TypeToken<Map<String, Income>>() {
         }.getType();
         Reader reader = new FileReader(new File(fileName));
@@ -59,15 +64,15 @@ public class IncomeStorage {
 
     // skapa metod lista alla inkomster
     public void printIncomes() {
-        System.out.println(" income list: ");
+        System.out.println("Income list: ");
         for (Income income : allIncomes.values()) {
-            System.out.println("Income: " + income);
+            System.out.println(income);
         }
     }
 
 
     //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
-    public double totalIncomes() {
+    public double calcTotalIncomes() {
         double sum1 = 0;
         for (Income income : allIncomes.values()) {
             sum1 += income.getAmount();
@@ -77,11 +82,20 @@ public class IncomeStorage {
     }
 
     //skapa metod för att ändra inkomst
-    public void changeIncome(Income income) {
-        allIncomes.replace(income.getId(), income);
-        System.out.println("Income: " + income + " changed");
+   public void changeIncome(String id, double amount) {
+       Income income = allIncomes.get(id);
+       income.setAmount(amount);
+       System.out.println("Income changed");
+
     }
 
+    public Map<String, Income> getAllIncomes() {
+        return allIncomes;
+    }
+
+    public void setAllIncomes(Map<String, Income> allIncomes) {
+        this.allIncomes = allIncomes;
+    }
 }
 
 
@@ -89,14 +103,5 @@ public class IncomeStorage {
 
 
 
-    /*
-    public void allIncomes() throws IOException {
-        System.out.println("This is all of your incomes:");
-        for (int i = 0; i < totalIncomes.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + ": " + totalIncomes.get(i));
-        }
-    }
- /*
-    Den här klassen ska ansvara för att spara till fil,
-    läsa in fil, lista alla inkomster, lägga till, uppdatera och ta bort en inkomst
-     */
+
+

@@ -33,7 +33,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return " -> "
+        return "amount: "
                 + amount +
                 ":- , date: " + date;
     }

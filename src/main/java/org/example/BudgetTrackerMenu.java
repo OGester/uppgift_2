@@ -1,9 +1,11 @@
 package org.example;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class BudgetTrackerMenu {
     public static void main(String[] args) throws IOException {
+        Scanner input = new Scanner(System.in);
         IncomeStorage iStorage = new IncomeStorage();
 
         //iStorage.readFile();
@@ -16,22 +18,28 @@ public class BudgetTrackerMenu {
         // income.setAmount(200);
         iStorage.readFile();
 
-        Income incomeTest = new Income(1700, "december-2023", EIncomeCategory.SALARY, "1234");
-        /*
-        incomeTest.setName("RogerHenrik");
-        incomeTest.setDate("24/10");
-        incomeTest.setCategory(EIncomeCategory.SALARY);
-        incomeTest.setAmount(1500.5);
+        Income incomeTest = new Income(1800, "juni-2023", EIncomeCategory.SALARY, "12345");
 
-         */
+        //incomeTest.setName("RogerHenrik");
+        //incomeTest.setDate("24/10");
+        //incomeTest.setCategory(EIncomeCategory.SALARY);
+        //incomeTest.setAmount(1500.5);
+
 
         //iStorage.addIncome(incomeTest);
-        iStorage.changeIncome(incomeTest);
-        iStorage.saveIncome();
-        iStorage.printIncomes();
+        //iStorage.saveIncome();
+        //iStorage.printIncomes();
         //iStorage.removeIncome("123");
         //iStorage.printIncomes();
-        iStorage.totalIncomes();
+        //iStorage.calcTotalIncomes();
+
+        iStorage.changeIncome("123", 100);
+       // iStorage.changeIncome("123", incomeTest);
+        iStorage.saveIncome();
+        iStorage.printIncomes();
+
+
+
 
 
 

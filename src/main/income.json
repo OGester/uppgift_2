@@ -1,14 +1,14 @@
 {
   "123": {
     "category": "SALARY",
-    "id": "123",
-    "amount": 1500.0,
-    "date": "25/2"
+    "id": "12345",
+    "amount": 100.0,
+    "date": "juni-2023"
   },
   "1234": {
     "category": "SALARY",
     "id": "1234",
-    "amount": 1700.0,
-    "date": "december-2023"
+    "amount": 1800.0,
+    "date": "juni-2023"
   }
 }
