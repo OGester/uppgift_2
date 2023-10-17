@@ -15,59 +15,76 @@ public class IncomeStorage {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
-    public void addIncome(Income income) {
-       try {
-                     if (allIncomes != null) {
-                         allIncomes.put(income.getName(), income);
-                         System.out.println("Income added");
-                     }
-       } catch (Exception e) {
-           System.out.println("null...");
-       }
-    }
     // skapa metod lägg till inkomst
+    public void addIncome(Income income) {
+        try {
+            if (allIncomes != null) {
+                allIncomes.put(income.getId(), income);
+                System.out.println("Income added");
+            }
+        } catch (Exception e) {
+            System.out.println("null...");
+        }
+    }
+
+
+    // Spara till Json fil
     public void saveIncome() throws IOException {
-        //allIncomes.put(income.getName(), income);
         FileWriter fw = new FileWriter(new File(fileName));
         gson.toJson(allIncomes, fw);
         fw.close();
         System.out.println("Saved!");
-
     }
+
+
     //Läs in från Json
     public void readFile() throws IOException {
-        Type type = new TypeToken<Map<String, Income>>(){}.getType();
+        Type type = new TypeToken<Map<String, Income>>() {
+        }.getType();
         Reader reader = new FileReader(new File(fileName));
         allIncomes = gson.fromJson(reader, type);
 
         System.out.println("Income list: ");
-        for(String name : allIncomes.keySet()) {
-            System.out.println("Key: " + name);
+        for (String id : allIncomes.keySet()) {
+            System.out.println("Key: " + id);
         }
-
     }
-
-    // Spara till Json fil
-    //public void saveIncome (Income)
-
-
-
-
-    // skapa metod lista alla inkomster
-
-
-    //skapa metod för att uppdatera inkomst
 
 
     //skapa metod för att ta bort inkomst
+    public void removeIncome(String id) {
+        allIncomes.remove(id);
+    }
 
 
+    // skapa metod lista alla inkomster
+    public void printIncomes() {
+        System.out.println(" income list: ");
+        for (Income income : allIncomes.values()) {
+            System.out.println("Income: " + income);
+        }
+    }
 
 
+    //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
+    public double totalIncomes() {
+        double sum1 = 0;
+        for (Income income : allIncomes.values()) {
+            sum1 += income.getAmount();
+        }
+        //System.out.println(sum1);
+        return sum1;
+    }
 
-
+    //skapa metod för att ändra inkomst
+    public void changeIncome(Income income) {
+        allIncomes.replace(income.getId(), income);
+        System.out.println("Income: " + income + " changed");
+    }
 
 }
+
+
 
 
 

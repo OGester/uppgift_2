@@ -4,16 +4,15 @@ public class Income extends Transaction {
 
 
     private EIncomeCategory category;
-    private String name;
+    private String id;
 
     public Income() {
-
     }
 
-    public Income(double amount, String date, EIncomeCategory category) {
+    public Income(double amount, String date, EIncomeCategory category, String id) {
         super(amount, date);
         this.category = category;
-
+        this.id = id;
     }
 
     public EIncomeCategory getCategory() {
@@ -21,21 +20,22 @@ public class Income extends Transaction {
     }
 
 
-    @Override
-    public String toString() {
-        return "Income - " + " -" + super.toString();
+    public String getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String name) {
+        this.id = name;
     }
 
     public void setCategory(EIncomeCategory category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction id: " + id +
+                ", Type: " + category + " " + super.toString();
     }
 
 

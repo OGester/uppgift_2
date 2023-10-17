@@ -1,23 +1,14 @@
 {
-  "Test": {
-    "name": "Test",
-    "amount": 0.0,
-    "date": "13/10"
+  "123": {
+    "category": "SALARY",
+    "id": "123",
+    "amount": 1500.0,
+    "date": "25/2"
   },
-  "Oskar": {
-    "name": "Oskar",
-    "amount": 0.0,
-    "date": "13/10"
-  },
-  "Tinen": {
-    "name": "Tinen",
-    "amount": 0.0,
-    "date": "13/10"
-  },
-  "Elliot": {
-    "category": "CSN",
-    "name": "Elliot",
-    "amount": 0.0,
-    "date": "13/10"
+  "1234": {
+    "category": "SALARY",
+    "id": "1234",
+    "amount": 1700.0,
+    "date": "december-2023"
   }
 }

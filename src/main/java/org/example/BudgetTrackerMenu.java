@@ -16,14 +16,26 @@ public class BudgetTrackerMenu {
         // income.setAmount(200);
         iStorage.readFile();
 
-        Income incomeTest = new Income();
-        incomeTest.setName("Elliot");
-        incomeTest.setDate("13/10");
-        incomeTest.setCategory(EIncomeCategory.CSN);
+        Income incomeTest = new Income(1700, "december-2023", EIncomeCategory.SALARY, "1234");
+        /*
+        incomeTest.setName("RogerHenrik");
+        incomeTest.setDate("24/10");
+        incomeTest.setCategory(EIncomeCategory.SALARY);
+        incomeTest.setAmount(1500.5);
 
-       iStorage.addIncome(incomeTest);
+         */
 
-       iStorage.saveIncome();
+        //iStorage.addIncome(incomeTest);
+        iStorage.changeIncome(incomeTest);
+        iStorage.saveIncome();
+        iStorage.printIncomes();
+        //iStorage.removeIncome("123");
+        //iStorage.printIncomes();
+        iStorage.totalIncomes();
+
+
+
+
     }
 
 }
