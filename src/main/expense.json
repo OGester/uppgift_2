@@ -1,0 +1,14 @@
+{
+  "321": {
+    "category": "INTERNET",
+    "id": "321",
+    "amount": 645.0,
+    "date": "juli-2023"
+  },
+  "4321": {
+    "category": "FOOD",
+    "id": "4321",
+    "amount": 3204.0,
+    "date": "juli-2023"
+  }
+}

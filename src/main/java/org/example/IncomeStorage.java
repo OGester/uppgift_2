@@ -18,18 +18,7 @@ public class IncomeStorage {
     // skapa metod lägg till inkomst
     public void addIncome(Income income) {
         allIncomes.put(income.getId(), income);
-        System.out.println("Income added");
-       /*
-        try {
-            if (allIncomes != null) {
-                allIncomes.put(income.getId(), income);
-                System.out.println("Income added");
-            }
-        } catch (Exception e) {
-            System.out.println("null...");
-        }
-
-        */
+        System.out.println("You added -> " + income + " <- to your Incomes.");
     }
 
 
@@ -49,10 +38,10 @@ public class IncomeStorage {
         Reader reader = new FileReader(new File(fileName));
         allIncomes = gson.fromJson(reader, type);
 
-        System.out.println("Income list: ");
-        for (String id : allIncomes.keySet()) {
-            System.out.println("Key: " + id);
-        }
+        System.out.println("Income list is retrieved.\n");
+        //for (String id : allIncomes.keySet()) {
+            //System.out.println("Key: " + id);
+        //}
     }
 
 

@@ -7,6 +7,7 @@ public class BudgetTrackerMenu {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         IncomeStorage iStorage = new IncomeStorage();
+        ExpenseStorage eStorage = new ExpenseStorage();
 
         //iStorage.readFile();
 
@@ -16,15 +17,13 @@ public class BudgetTrackerMenu {
         //TestIncome income = new TestIncome();
        // income.setTypeOfIncome("Test");
         // income.setAmount(200);
-        iStorage.readFile();
+        iStorage.readIncomeFile();
+        eStorage.readExpenseFile();
+
+
 
         Income incomeTest = new Income(1800, "juni-2023", EIncomeCategory.SALARY, "12345");
-
-        //incomeTest.setName("RogerHenrik");
-        //incomeTest.setDate("24/10");
-        //incomeTest.setCategory(EIncomeCategory.SALARY);
-        //incomeTest.setAmount(1500.5);
-
+        Expense expenseTest = new Expense(500,"juni-2023", EExpenseCategory.INSURANCE, "432" );
 
         //iStorage.addIncome(incomeTest);
         //iStorage.saveIncome();
@@ -33,10 +32,16 @@ public class BudgetTrackerMenu {
         //iStorage.printIncomes();
         //iStorage.calcTotalIncomes();
 
-        iStorage.changeIncome("123", 100);
-       // iStorage.changeIncome("123", incomeTest);
-        iStorage.saveIncome();
-        iStorage.printIncomes();
+        eStorage.addExpense(expenseTest);
+        //eStorage.saveExpense();
+        eStorage.printExpenses();
+
+
+
+        //iStorage.changeIncome("123", 100);
+        //iStorage.changeIncome("123", incomeTest);
+        //iStorage.saveIncome();
+        //iStorage.printIncomes();
 
 
 

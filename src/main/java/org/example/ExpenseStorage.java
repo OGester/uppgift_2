@@ -18,18 +18,7 @@ public class ExpenseStorage {
     // skapa metod lägg till inkomst
     public void addExpense(Expense expense) {
         allExpenses.put(expense.getId(), expense);
-        System.out.println("Expense added");
-       /*
-        try {
-            if (allIncomes != null) {
-                allIncomes.put(income.getId(), income);
-                System.out.println("Income added");
-            }
-        } catch (Exception e) {
-            System.out.println("null...");
-        }
-
-        */
+        System.out.println("You added -> " + expense + " <- to your Expenses.");
     }
 
 
@@ -49,10 +38,10 @@ public class ExpenseStorage {
         Reader reader = new FileReader(new File(fileName));
         allExpenses = gson.fromJson(reader, type);
 
-        System.out.println("Income list: ");
-        for (String id : allExpenses.keySet()) {
-            System.out.println("Key: " + id);
-        }
+        System.out.println("Expense list is retreived.\n");
+        //for (String id : allExpenses.keySet()) {
+            //System.out.println("Key: " + id);
+        //}
     }
 
 
