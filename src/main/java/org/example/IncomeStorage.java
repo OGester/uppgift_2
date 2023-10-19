@@ -48,6 +48,7 @@ public class IncomeStorage {
     //skapa metod för att ta bort inkomst
     public void removeIncome(String id) {
         allIncomes.remove(id);
+        System.out.println("Income removed");
     }
 
 
@@ -70,12 +71,28 @@ public class IncomeStorage {
         return sum1;
     }
 
-    //skapa metod för att ändra inkomst
-   public void changeIncome(String id, double amount) {
+    //skapa metoder för att ändra inkomst
+   public void changeIncomeAmount(String id, double amount) {
        Income income = allIncomes.get(id);
        income.setAmount(amount);
-       System.out.println("Income changed");
+       System.out.println("Income amount changed");
+    }
 
+    public void changeIncomeDate(String id, String date) {
+        Income income = allIncomes.get(date);
+        income.setDate(date);
+        System.out.println("Income date changed");
+    }
+
+    public void changeIncomeCategory(String id, EIncomeCategory category) {
+        Income income = allIncomes.get(category);
+        income.setCategory(category);
+        System.out.println("Income category changed");
+    }
+
+    public void changeIncomeId(String id, String id2) {
+        Income income = allIncomes.get(id);
+        income.setId(id2);
     }
 
     public Map<String, Income> getAllIncomes() {

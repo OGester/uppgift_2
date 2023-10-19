@@ -32,6 +32,5 @@ public class User {
     }
 
 
-    //Representerar användare. Skall minst innehålla
-    // *firstName - String & *lastName - String
+
 }
