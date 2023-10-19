@@ -27,7 +27,7 @@ public class IncomeStorage {
         FileWriter fw = new FileWriter(new File(fileName));
         gson.toJson(allIncomes, fw);
         fw.close();
-        System.out.println("Saved!");
+        System.out.println("--Changes has been saved--\n");
     }
 
 
@@ -40,25 +40,22 @@ public class IncomeStorage {
 
         System.out.println("Income list is retrieved.\n");
         //for (String id : allIncomes.keySet()) {
-            //System.out.println("Key: " + id);
-        //}
+            //System.out.println("Key: " + id);}
+
     }
 
 
     //skapa metod för att ta bort inkomst
-    public void removeIncome(String id) {
-        allIncomes.remove(id);
+    public void removeIncome(String removeKey) {
+        allIncomes.remove(removeKey);
         System.out.println("Income removed");
     }
 
-
-    // skapa metod lista alla inkomster
+    // For each loop som listar både Key och värdena knutna till den.
     public void printIncomes() {
-        System.out.println("Income list: ");
-        for (Income income : allIncomes.values()) {
-            System.out.println(income);
+        System.out.println("These are all saved incomes: ");
+        allIncomes.forEach((key, value) -> System.out.println("Key: " +key + " -> " + value));
         }
-    }
 
 
     //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
@@ -72,28 +69,24 @@ public class IncomeStorage {
     }
 
     //skapa metoder för att ändra inkomst
-   public void changeIncomeAmount(String id, double amount) {
-       Income income = allIncomes.get(id);
+   public void changeIncomeAmount(String amountId, double amount) {
+       Income income = allIncomes.get(amountId);
        income.setAmount(amount);
        System.out.println("Income amount changed");
     }
 
-    public void changeIncomeDate(String id, String date) {
-        Income income = allIncomes.get(date);
+    public void changeIncomeDate(String dateId, String date) {
+        Income income = allIncomes.get(dateId);
         income.setDate(date);
         System.out.println("Income date changed");
     }
 
-    public void changeIncomeCategory(String id, EIncomeCategory category) {
-        Income income = allIncomes.get(category);
+    public void changeIncomeCategory(String catId, EIncomeCategory category) {
+        Income income = allIncomes.get(catId);
         income.setCategory(category);
         System.out.println("Income category changed");
     }
 
-    public void changeIncomeId(String id, String id2) {
-        Income income = allIncomes.get(id);
-        income.setId(id2);
-    }
 
     public Map<String, Income> getAllIncomes() {
         return allIncomes;

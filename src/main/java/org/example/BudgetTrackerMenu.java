@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class BudgetTrackerMenu {
-    public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(System.in);
+
+
+        private Scanner scan = new Scanner(System.in);
         User logIn = new User();
         IncomeStorage iStorage = new IncomeStorage();
         ExpenseStorage eStorage = new ExpenseStorage();
+        private boolean isRunning = true;
 
+    public BudgetTrackerMenu() throws IOException {
+        mainMenu();
+    }
+
+    public void mainMenu() throws IOException {
         iStorage.readIncomeFile();
         eStorage.readExpenseFile();
-        boolean isRunning = true;
 
         System.out.println(" Welcome to Budget Tracker!\n----------------------------\n" +
                 "-Please enter your first name: ");
@@ -47,9 +53,31 @@ public class BudgetTrackerMenu {
 
                 switch (userChoice) {
                     case 1:
+                        System.out.println("ADD INCOME\n" +
+                                    "--------------------");
                         addIncome();
+                        break;
 
+                    case 2:
+                        System.out.println("REMOVE INCOME\n" +
+                                    "--------------------");
+                        removeIncome();
+                        break;
 
+                    case 3:
+                        System.out.println("CHANGE INCOME\n" +
+                                    "--------------------");
+                        changeIncome();
+                        break;
+
+                    case 4:
+                        System.out.println("INCOME LIST\n" +
+                                    "-------------------");
+                        iStorage.printIncomes();
+                        break;
+
+                    default:
+                        System.out.println("Default!");
                 }
             } catch (Exception e) {
                 System.out.println("Something went wrong!");
@@ -58,13 +86,13 @@ public class BudgetTrackerMenu {
 
     }
 
-    public static void addIncome() {
+    public void addIncome() throws IOException {
         System.out.println("Set Income id number: ");
         scan.nextLine();
         String incomeId = scan.nextLine();
         System.out.println("Please add amount: ");
         double incomeAmount = scan.nextDouble();
-        System.out.println("Please add date (MM/DD//YY): ");
+        System.out.println("Please add date (DD/MM//YY): ");
         scan.nextLine();
         String incomeDate = scan.nextLine();
         System.out.println("Choose type of income (Salary, Csn or Sales): ");
@@ -73,6 +101,74 @@ public class BudgetTrackerMenu {
         iStorage.addIncome(newIncome);
         iStorage.saveIncome();
 
+    }
+
+    public void removeIncome() throws IOException {
+        iStorage.printIncomes();
+        System.out.println("Remove income by selecting Key: ");
+        scan.nextLine();
+        String removeKey = scan.nextLine();
+        iStorage.removeIncome(removeKey);
+        iStorage.saveIncome();
+    }
+//metod med inkluderad switch för user att välja vilka
+//ändringar man vill göra på sparde inkomster.
+    public void changeIncome() throws IOException {
+
+        System.out.println("What would you like to change?\n" +
+                        "[1] Amount\n" +
+                        "[2] Date\n" +
+                        "[3] Source of income\n");
+
+        int incChange = scan.nextInt();
+
+        switch(incChange){
+            case 1:
+                iStorage.printIncomes();
+                System.out.println("CHANGE AMOUNT-\n" +
+                                "Choose id of income to change:");
+                scan.nextLine();
+                String amountId = scan.nextLine();
+                System.out.println("State new amount");
+                double amountChange = scan.nextDouble();
+                iStorage.changeIncomeAmount(amountId, amountChange);
+                iStorage.saveIncome();
+                break;
+
+            case 2:
+                iStorage.printIncomes();
+                System.out.println("CHANGE DATE-\n" +
+                        "Choose id of income to change");
+                scan.nextLine();
+                String dateId = scan.nextLine();
+                //user ombeds ange datum på specifikt sätt
+                // för att lättare kunna söka på inkomster senare.
+                System.out.println("State new date (month-YYYY):");
+                String changeDate = scan.nextLine();
+                iStorage.changeIncomeDate(dateId, changeDate);
+                iStorage.saveIncome();
+                break;
+
+
+            case 3:
+                iStorage.printIncomes();
+                System.out.println("CHANGE CATEGORY-\n" +
+                        "Choose id of income to change");
+                scan.nextLine();
+                String catId = scan.nextLine();
+                System.out.println("State new category - Salary, Csn or Sales:");
+                //scanner så att sträng uppfattas som enum genom toUpperCAse
+                EIncomeCategory catValue = EIncomeCategory.valueOf(scan.next().toUpperCase());
+                iStorage.changeIncomeCategory(catId, catValue);
+                iStorage.saveIncome();
+                break;
+
+            default:
+                System.out.println("Default");
+
+
+
+        }
     }
 }
 
