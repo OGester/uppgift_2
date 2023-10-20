@@ -76,6 +76,10 @@ public class BudgetTrackerMenu {
                         iStorage.printIncomes();
                         break;
 
+                    case 5:
+                        iStorage.calcIncomes();
+                        break;
+
                     default:
                         System.out.println("Default!");
                 }
@@ -126,19 +130,19 @@ public class BudgetTrackerMenu {
             case 1:
                 iStorage.printIncomes();
                 System.out.println("CHANGE AMOUNT-\n" +
-                                "Choose id of income to change:");
+                                "Choose Key of income to change:");
                 scan.nextLine();
-                String amountId = scan.nextLine();
+                String amountKey = scan.nextLine();
                 System.out.println("State new amount");
                 double amountChange = scan.nextDouble();
-                iStorage.changeIncomeAmount(amountId, amountChange);
+                iStorage.changeIncomeAmount(amountKey, amountChange);
                 iStorage.saveIncome();
                 break;
 
             case 2:
                 iStorage.printIncomes();
                 System.out.println("CHANGE DATE-\n" +
-                        "Choose id of income to change");
+                        "Choose Key of income to change");
                 scan.nextLine();
                 String dateId = scan.nextLine();
                 //user ombeds ange datum på specifikt sätt
@@ -153,7 +157,7 @@ public class BudgetTrackerMenu {
             case 3:
                 iStorage.printIncomes();
                 System.out.println("CHANGE CATEGORY-\n" +
-                        "Choose id of income to change");
+                        "Choose Key of income to change");
                 scan.nextLine();
                 String catId = scan.nextLine();
                 System.out.println("State new category - Salary, Csn or Sales:");

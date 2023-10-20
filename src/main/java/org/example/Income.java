@@ -34,8 +34,8 @@ public class Income extends Transaction {
 
     @Override
     public String toString() {
-        return "Transaction - " +
-                "Type: " + category + "- " + super.toString();
+        return "Transaction - ID: " + id +
+                " -Type: " + category + "- " + super.toString();
     }
 
 

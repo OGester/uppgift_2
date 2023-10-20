@@ -59,6 +59,7 @@ public class IncomeStorage {
 
 
     //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
+    //MEN loopar igenom ALLA incomes.... behöver fixa som loopar baserat på datum.
     public double calcTotalIncomes() {
         double sum1 = 0;
         for (Income income : allIncomes.values()) {
@@ -68,21 +69,27 @@ public class IncomeStorage {
         return sum1;
     }
 
+    public void calcIncomes() {
+
+
+    }
+
+
     //skapa metoder för att ändra inkomst
-   public void changeIncomeAmount(String amountId, double amount) {
-       Income income = allIncomes.get(amountId);
+   public void changeIncomeAmount(String amountKey, double amount) {
+       Income income = allIncomes.get(amountKey);
        income.setAmount(amount);
        System.out.println("Income amount changed");
     }
 
-    public void changeIncomeDate(String dateId, String date) {
-        Income income = allIncomes.get(dateId);
+    public void changeIncomeDate(String dateKey, String date) {
+        Income income = allIncomes.get(dateKey);
         income.setDate(date);
         System.out.println("Income date changed");
     }
 
-    public void changeIncomeCategory(String catId, EIncomeCategory category) {
-        Income income = allIncomes.get(catId);
+    public void changeIncomeCategory(String catKey, EIncomeCategory category) {
+        Income income = allIncomes.get(catKey);
         income.setCategory(category);
         System.out.println("Income category changed");
     }
