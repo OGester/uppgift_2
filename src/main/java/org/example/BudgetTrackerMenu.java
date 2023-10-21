@@ -77,7 +77,10 @@ public class BudgetTrackerMenu {
                         break;
 
                     case 5:
-                        iStorage.calcIncomes();
+                        System.out.println("state month and date (month-YYYY):");
+                        scan.nextLine();
+                        String calcDate = scan.nextLine();
+                        iStorage.calcTotalIncomes(calcDate);
                         break;
 
                     default:

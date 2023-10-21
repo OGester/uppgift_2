@@ -60,13 +60,17 @@ public class IncomeStorage {
 
     //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
     //MEN loopar igenom ALLA incomes.... behöver fixa som loopar baserat på datum.
-    public double calcTotalIncomes() {
+    public void calcTotalIncomes(String calcDate) {
         double sum1 = 0;
         for (Income income : allIncomes.values()) {
-            sum1 += income.getAmount();
+            if (calcDate.equals(income.getDate())) {
+                sum1 += income.getAmount();
+            }
+
+            //sum1 += income.getAmount();
         }
-        //System.out.println(sum1);
-        return sum1;
+        System.out.println("total :" + sum1);
+        //return sum1;
     }
 
     public void calcIncomes() {
