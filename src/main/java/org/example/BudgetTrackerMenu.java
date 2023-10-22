@@ -77,6 +77,32 @@ public class BudgetTrackerMenu {
                         break;
 
                     case 5:
+                        System.out.println("ADD EXPENSE\n" +
+                                "--------------------");
+                        addExpense();
+                        break;
+
+                    case 6:
+                        System.out.println("REMOVE EXPENSE\n" +
+                                "--------------------");
+                        removeExpense();
+                        break;
+
+                    case 7:
+                        //Skriv om change income till expense och lägg in här
+                        System.out.println("CHANGE EXPENSE\n" +
+                                "--------------------");
+
+                        break;
+
+                    case 8:
+                        System.out.println("EXPENSE LIST\n" +
+                                "-------------------");
+                        eStorage.printExpenses();
+                        break;
+
+                    case 9:
+                        //skapa metod för räkna ihop expenses och räkna ut income kontra expense
                         System.out.println("state month and date (month-YYYY):");
                         scan.nextLine();
                         String calcDate = scan.nextLine();
@@ -92,14 +118,16 @@ public class BudgetTrackerMenu {
             }
 
     }
-
+    //identiska metoder som lägger till samt sparar income/expense till vardera json fil
     public void addIncome() throws IOException {
         System.out.println("Set Income id number: ");
         scan.nextLine();
         String incomeId = scan.nextLine();
         System.out.println("Please add amount: ");
         double incomeAmount = scan.nextDouble();
-        System.out.println("Please add date (DD/MM//YY): ");
+        //user ombeds ange datum på specifikt sätt
+        // för att lättare kunna söka på inkomster senare.
+        System.out.println("Please add date (month-YYYY): ");
         scan.nextLine();
         String incomeDate = scan.nextLine();
         System.out.println("Choose type of income (Salary, Csn or Sales): ");
@@ -109,7 +137,26 @@ public class BudgetTrackerMenu {
         iStorage.saveIncome();
 
     }
-
+    public void addExpense() throws IOException {
+        System.out.println("Set Expense id number: ");
+        scan.nextLine();
+        String expenseId = scan.nextLine();
+        System.out.println("Please add amount: ");
+        double expenseAmount = scan.nextDouble();
+        //user ombeds ange datum på specifikt sätt
+        // för att lättare kunna söka på inkomster senare.
+        System.out.println("Please add date (month-YYYY): ");
+        scan.nextLine();
+        String expenseDate = scan.nextLine();
+        System.out.println("Choose type of Expense\n " +
+                "(Rent, Elecricalbill, Phone, Internet, Food, Insurance, Loan, Misc): ");
+        EExpenseCategory expenseValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
+        Expense newExpense = new Expense(expenseAmount, expenseDate, expenseValue, expenseId);
+        eStorage.addExpense(newExpense);
+        eStorage.saveExpense();
+    }
+    //metoder som låter usern ta bort inkomst/expense genom att ange id på det som skall
+    // tas bort. med hjälp av metoder hämtade från Inc- ExpenseStorage klasserna.
     public void removeIncome() throws IOException {
         iStorage.printIncomes();
         System.out.println("Remove income by selecting Key: ");
@@ -117,6 +164,15 @@ public class BudgetTrackerMenu {
         String removeKey = scan.nextLine();
         iStorage.removeIncome(removeKey);
         iStorage.saveIncome();
+    }
+
+    public void removeExpense() throws IOException {
+        eStorage.printExpenses();
+        System.out.println("Remove Expense by selecting Key: ");
+        scan.nextLine();
+        String removeKey = scan.nextLine();
+        eStorage.removeExpense(removeKey);
+        eStorage.saveExpense();
     }
 //metod med inkluderad switch för user att välja vilka
 //ändringar man vill göra på sparde inkomster.
