@@ -68,7 +68,7 @@ public class IncomeStorage {
                 incSum += income.getAmount();
             }
         }
-        System.out.println("total :" + incSum);
+        //System.out.println("total :" + incSum);
         return incSum;
     }
 

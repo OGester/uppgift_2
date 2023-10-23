@@ -22,5 +22,11 @@
     "id": "103",
     "amount": 200.0,
     "date": "juni-2023"
+  },
+  "364": {
+    "category": "SALARY",
+    "id": "364",
+    "amount": 15000.0,
+    "date": "juli-2023"
   }
 }

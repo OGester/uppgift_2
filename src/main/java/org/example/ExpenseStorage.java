@@ -61,13 +61,15 @@ public class ExpenseStorage {
 
 
     //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
-    public double calcTotalExpenses() {
-        double sum1 = 0;
+    public double calcTotalExpenses(String calcDate) {
+        double expSum = 0;
         for (Expense expense : allExpenses.values()) {
-            sum1 += expense.getAmount();
+            if (calcDate.equals(expense.getDate())) {
+                expSum += expense.getAmount();
+            }
         }
-        //System.out.println(sum1);
-        return sum1;
+        //System.out.println("total :" + incSum);
+        return expSum;
     }
 
     //skapa metod för att ändra inkomst

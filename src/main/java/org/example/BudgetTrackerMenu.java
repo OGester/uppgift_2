@@ -106,7 +106,12 @@ public class BudgetTrackerMenu {
                         System.out.println("state month and date (month-YYYY):");
                         scan.nextLine();
                         String calcDate = scan.nextLine();
-                        iStorage.calcTotalIncomes(calcDate);
+                        double incPerMonth = iStorage.calcTotalIncomes(calcDate);
+                        double expPerMonth = eStorage.calcTotalExpenses(calcDate);
+                        System.out.println("Total incomes for " + calcDate + " is: " + incPerMonth);
+                        System.out.println("\nTotal expenses for " + calcDate + " is: " + expPerMonth);
+                        System.out.println("\nMoney left in " + calcDate + " after expenses is paid: "
+                                            + (incPerMonth - expPerMonth));
                         break;
 
                     default:
