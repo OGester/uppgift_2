@@ -38,7 +38,7 @@ public class IncomeStorage {
         Reader reader = new FileReader(new File(fileName));
         allIncomes = gson.fromJson(reader, type);
 
-        System.out.println("Income list is retrieved.\n");
+        System.out.println("Income list is retrieved.");
         //for (String id : allIncomes.keySet()) {
             //System.out.println("Key: " + id);}
 

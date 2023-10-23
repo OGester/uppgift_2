@@ -92,6 +92,7 @@ public class BudgetTrackerMenu {
                         //Skriv om change income till expense och lägg in här
                         System.out.println("CHANGE EXPENSE\n" +
                                 "--------------------");
+                        changeExpense();
 
                         break;
 
@@ -106,6 +107,8 @@ public class BudgetTrackerMenu {
                         System.out.println("state month and date (month-YYYY):");
                         scan.nextLine();
                         String calcDate = scan.nextLine();
+                        // incPerMonth och expPerMonth håller resultatet av metoden för att
+                        //kunna använda dem och räkna ut saldo per månad.
                         double incPerMonth = iStorage.calcTotalIncomes(calcDate);
                         double expPerMonth = eStorage.calcTotalExpenses(calcDate);
                         System.out.println("Total incomes for " + calcDate + " is: " + incPerMonth);
@@ -180,7 +183,7 @@ public class BudgetTrackerMenu {
         eStorage.saveExpense();
     }
 //metod med inkluderad switch för user att välja vilka
-//ändringar man vill göra på sparde inkomster.
+//ändringar man vill göra på sparde inkomster/ utgifter.
     public void changeIncome() throws IOException {
 
         System.out.println("What would you like to change?\n" +
@@ -196,6 +199,8 @@ public class BudgetTrackerMenu {
                 System.out.println("CHANGE AMOUNT-\n" +
                                 "Choose Key of income to change:");
                 scan.nextLine();
+                //har valt att använda key för att specificera vilken inkomst som skall ändras
+                //alla tre cases fungerar på samma vis
                 String amountKey = scan.nextLine();
                 System.out.println("State new amount");
                 double amountChange = scan.nextDouble();
@@ -225,10 +230,69 @@ public class BudgetTrackerMenu {
                 scan.nextLine();
                 String catId = scan.nextLine();
                 System.out.println("State new category - Salary, Csn or Sales:");
-                //scanner så att sträng uppfattas som enum genom toUpperCAse
+                //scanner så att sträng uppfattas som enum genom toUpperCase
                 EIncomeCategory catValue = EIncomeCategory.valueOf(scan.next().toUpperCase());
                 iStorage.changeIncomeCategory(catId, catValue);
                 iStorage.saveIncome();
+                break;
+
+            default:
+                System.out.println("Default");
+
+
+
+        }
+    }
+
+    public void changeExpense() throws IOException {
+
+        System.out.println("What would you like to change?\n" +
+                "[1] Amount\n" +
+                "[2] Date\n" +
+                "[3] Expense source\n");
+
+        int expChange = scan.nextInt();
+
+        switch(expChange){
+            case 1:
+                eStorage.printExpenses();
+                System.out.println("CHANGE AMOUNT-\n" +
+                        "Choose Key of expense to change:");
+                scan.nextLine();
+                //har valt att använda key för att specificera vilken expense som skall ändras
+                //alla tre cases fungerar på samma vis
+                String amountKey = scan.nextLine();
+                System.out.println("State new amount");
+                double amountChange = scan.nextDouble();
+                eStorage.changeExpenseAmount(amountKey, amountChange);
+                eStorage.saveExpense();
+                break;
+
+            case 2:
+                iStorage.printIncomes();
+                System.out.println("CHANGE DATE-\n" +
+                        "Choose Key of expense to change");
+                scan.nextLine();
+                String dateId = scan.nextLine();
+                //user ombeds ange datum på specifikt sätt
+                // för att lättare kunna söka på inkomster senare.
+                System.out.println("State new date (month-YYYY):");
+                String changeDate = scan.nextLine();
+                eStorage.changeExpenseDate(dateId, changeDate);
+                eStorage.saveExpense();
+                break;
+
+            case 3:
+                iStorage.printIncomes();
+                System.out.println("CHANGE CATEGORY-\n" +
+                        "Choose Key of expense to change");
+                scan.nextLine();
+                String catId = scan.nextLine();
+                System.out.println("State new category - Salary, Csn or Sales:");
+                //scanner så att sträng uppfattas som enum genom toUpperCase
+                EExpenseCategory catValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
+                eStorage.changeExpenseCategory(catId, catValue);
+                eStorage.saveExpense();
                 break;
 
             default:

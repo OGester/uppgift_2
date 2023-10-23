@@ -38,10 +38,7 @@ public class ExpenseStorage {
         Reader reader = new FileReader(new File(fileName));
         allExpenses = gson.fromJson(reader, type);
 
-        System.out.println("Expense list is retreived.\n");
-        //for (String id : allExpenses.keySet()) {
-            //System.out.println("Key: " + id);
-        //}
+        System.out.println("Expense list is retreived.");
     }
 
 
@@ -73,11 +70,23 @@ public class ExpenseStorage {
     }
 
     //skapa metod för att ändra inkomst
-    public void changeExpense(String id, double amount) {
+    public void changeExpenseAmount(String id, double amount) {
         Expense expense = allExpenses.get(id);
         expense.setAmount(amount);
-        System.out.println("Expense changed!");
+        System.out.println("Expense amount changed!");
 
+    }
+
+    public void changeExpenseDate(String dateKey, String date) {
+        Expense expense = allExpenses.get(dateKey);
+        expense.setDate(date);
+        System.out.println("Expense date changed");
+    }
+
+    public void changeExpenseCategory(String catKey, EExpenseCategory category) {
+        Expense expense = allExpenses.get(catKey);
+        expense.setCategory(category);
+        System.out.println("Expense category changed");
     }
 
     public Map<String, Expense> getAllExpenses() {
