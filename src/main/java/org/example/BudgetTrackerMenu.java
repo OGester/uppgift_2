@@ -42,12 +42,10 @@ public class BudgetTrackerMenu {
                         "[1] Add income\n" +
                         "[2] Remove income\n" +
                         "[3] Change income\n" +
-                        "[4] List all incomes\n" +
-                        "[5] Add expense\n" +
-                        "[6] Remove expense\n" +
-                        "[7] Change expense\n" +
-                        "[8] List all expenses\n" +
-                        "[9] Budget overview Income vs. Expenses");
+                        "[4] Add expense\n" +
+                        "[5] Remove expense\n" +
+                        "[6] Change expense\n" +
+                        "[7] Budget overview");
 
                 int userChoice = scan.nextInt();
 
@@ -71,39 +69,31 @@ public class BudgetTrackerMenu {
                         break;
 
                     case 4:
-                        System.out.println("INCOME LIST\n" +
-                                    "-------------------");
-                        iStorage.printIncomes();
-                        break;
-
-                    case 5:
                         System.out.println("ADD EXPENSE\n" +
                                 "--------------------");
                         addExpense();
                         break;
 
-                    case 6:
+                    case 5:
                         System.out.println("REMOVE EXPENSE\n" +
                                 "--------------------");
                         removeExpense();
                         break;
 
-                    case 7:
-                        //Skriv om change income till expense och lägg in här
+                    case 6:
                         System.out.println("CHANGE EXPENSE\n" +
                                 "--------------------");
                         changeExpense();
-
                         break;
 
-                    case 8:
-                        System.out.println("EXPENSE LIST\n" +
-                                "-------------------");
-                        eStorage.printExpenses();
-                        break;
+                    case 7:
+                        System.out.println("BUDGET OVERVIEW\n" +
+                                "--------------------");
+                        iStorage.searchIncome("juni-2023", EIncomeCategory.SALARY);
 
-                    case 9:
+
                         //skapa metod för räkna ihop expenses och räkna ut income kontra expense
+                        /*
                         System.out.println("state month and date (month-YYYY):");
                         scan.nextLine();
                         String calcDate = scan.nextLine();
@@ -114,8 +104,11 @@ public class BudgetTrackerMenu {
                         System.out.println("Total incomes for " + calcDate + " is: " + incPerMonth);
                         System.out.println("\nTotal expenses for " + calcDate + " is: " + expPerMonth);
                         System.out.println("\nMoney left in " + calcDate + " after expenses is paid: "
-                                            + (incPerMonth - expPerMonth));
+                                + (incPerMonth - expPerMonth));
+
+                         */
                         break;
+
 
                     default:
                         System.out.println("Default!");
@@ -299,6 +292,19 @@ public class BudgetTrackerMenu {
                 System.out.println("Default");
 
 
+
+        }
+    }
+    public void budgetOverview(){
+        System.out.println("Please select task.\n" +
+                "[1] Search income\n" +
+                "[2] Search expense\n" +
+                "[3] Monthly budget balance\n");
+        //budgetoverview choice
+        int bOverviewChoice = scan.nextInt();
+
+        switch (bOverviewChoice){
+            case 1:
 
         }
     }

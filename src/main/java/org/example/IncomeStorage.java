@@ -60,11 +60,10 @@ public class IncomeStorage {
 
     //metod som loopar igenom alla amounts i allIncomes och kollar efter incomes
     // som matchar input och räknar ihop dem.
-
     public double calcTotalIncomes(String calcDate) {
         double incSum = 0;
         for (Income income : allIncomes.values()) {
-            if (calcDate.equals(income.getDate())) {
+            if (calcDate.equals(income.getDate()))  {
                 incSum += income.getAmount();
             }
         }
@@ -72,6 +71,14 @@ public class IncomeStorage {
         return incSum;
     }
 
+    // sökmetod för att hitta specifik inkomst
+    //overDate = user input för sökdatum
+    public void searchIncome (String overDate, EIncomeCategory category) {
+        for (Income income : allIncomes.values()) {
+            if (overDate.equals(income.getDate()) && category.equals(income.getCategory())){
+                System.out.println(income); }
+        }
+    }
 
     //skapa metoder för att ändra inkomst
    public void changeIncomeAmount(String amountKey, double amount) {
