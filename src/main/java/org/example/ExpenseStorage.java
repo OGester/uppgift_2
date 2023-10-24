@@ -56,6 +56,13 @@ public class ExpenseStorage {
         }
     }
 
+    public void printMonthlyExpenses(String monthlyExpSearh){
+        for (Expense expense : allExpenses.values()) {
+            if (monthlyExpSearh.equals(expense.getDate())) {
+                System.out.println("All your " + monthlyExpSearh + " expenses are:\n" + expense); }
+        }
+    }
+
 
     //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
     public double calcTotalExpenses(String calcDate) {

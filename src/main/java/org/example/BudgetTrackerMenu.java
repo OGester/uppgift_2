@@ -23,7 +23,7 @@ public class BudgetTrackerMenu {
         System.out.println(" Welcome to Budget Tracker!\n----------------------------\n" +
                 "-Please enter your first name: ");
         String firstName = scan.nextLine();
-        System.out.println("- enter your last name: ");
+        System.out.println("-Enter your last name: ");
         String lastName = scan.nextLine();
         String hiUser = firstName + " " + lastName;
         //Sparar user i en array för eventuellt framtida utveckling för flera users.
@@ -47,46 +47,46 @@ public class BudgetTrackerMenu {
                         "[6] Change expense\n" +
                         "[7] Budget overview");
 
-                int userChoice = scan.nextInt();
+                String userChoice = scan.nextLine();
 
                 switch (userChoice) {
-                    case 1:
+                    case "1":
                         System.out.println("ADD INCOME\n" +
                                     "--------------------");
                         addIncome();
                         break;
 
-                    case 2:
+                    case "2":
                         System.out.println("REMOVE INCOME\n" +
                                     "--------------------");
                         removeIncome();
                         break;
 
-                    case 3:
+                    case "3":
                         System.out.println("CHANGE INCOME\n" +
                                     "--------------------");
                         changeIncome();
                         break;
 
-                    case 4:
+                    case "4":
                         System.out.println("ADD EXPENSE\n" +
                                 "--------------------");
                         addExpense();
                         break;
 
-                    case 5:
+                    case "5":
                         System.out.println("REMOVE EXPENSE\n" +
                                 "--------------------");
                         removeExpense();
                         break;
 
-                    case 6:
+                    case "6":
                         System.out.println("CHANGE EXPENSE\n" +
                                 "--------------------");
                         changeExpense();
                         break;
 
-                    case 7:
+                    case "7":
                         System.out.println("BUDGET OVERVIEW\n" +
                                 "--------------------");
                         budgetOverview();
@@ -112,8 +112,9 @@ public class BudgetTrackerMenu {
     //identiska metoder som lägger till samt sparar income/expense till vardera json fil
     public void addIncome() throws IOException {
         System.out.println("Set Income id number: ");
-        scan.nextLine();
         String incomeId = scan.nextLine();
+        System.out.println("Choose type of income (Salary, Csn or Sales): ");
+        EIncomeCategory incomeValue = EIncomeCategory.valueOf(scan.next().toUpperCase());
         System.out.println("Please add amount: ");
         double incomeAmount = scan.nextDouble();
         //user ombeds ange datum på specifikt sätt
@@ -121,8 +122,7 @@ public class BudgetTrackerMenu {
         System.out.println("Please add date (month-YYYY): ");
         scan.nextLine();
         String incomeDate = scan.nextLine();
-        System.out.println("Choose type of income (Salary, Csn or Sales): ");
-        EIncomeCategory incomeValue = EIncomeCategory.valueOf(scan.next().toUpperCase());
+
         Income newIncome = new Income(incomeAmount, incomeDate, incomeValue, incomeId);
         iStorage.addIncome(newIncome);
         iStorage.saveIncome();
@@ -130,8 +130,10 @@ public class BudgetTrackerMenu {
     }
     public void addExpense() throws IOException {
         System.out.println("Set Expense id number: ");
-        scan.nextLine();
         String expenseId = scan.nextLine();
+        System.out.println("Choose type of Expense\n " +
+                "(Rent, Elecricalbill, Phone, Internet, Food, Insurance, Loan, Misc): ");
+        EExpenseCategory expenseValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
         System.out.println("Please add amount: ");
         double expenseAmount = scan.nextDouble();
         //user ombeds ange datum på specifikt sätt
@@ -139,9 +141,7 @@ public class BudgetTrackerMenu {
         System.out.println("Please add date (month-YYYY): ");
         scan.nextLine();
         String expenseDate = scan.nextLine();
-        System.out.println("Choose type of Expense\n " +
-                "(Rent, Elecricalbill, Phone, Internet, Food, Insurance, Loan, Misc): ");
-        EExpenseCategory expenseValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
+
         Expense newExpense = new Expense(expenseAmount, expenseDate, expenseValue, expenseId);
         eStorage.addExpense(newExpense);
         eStorage.saveExpense();
@@ -151,7 +151,6 @@ public class BudgetTrackerMenu {
     public void removeIncome() throws IOException {
         iStorage.printIncomes();
         System.out.println("Remove income by selecting Key: ");
-        scan.nextLine();
         String removeKey = scan.nextLine();
         iStorage.removeIncome(removeKey);
         iStorage.saveIncome();
@@ -160,7 +159,6 @@ public class BudgetTrackerMenu {
     public void removeExpense() throws IOException {
         eStorage.printExpenses();
         System.out.println("Remove Expense by selecting Key: ");
-        scan.nextLine();
         String removeKey = scan.nextLine();
         eStorage.removeExpense(removeKey);
         eStorage.saveExpense();
@@ -174,14 +172,13 @@ public class BudgetTrackerMenu {
                         "[2] Date\n" +
                         "[3] Source of income\n");
 
-        int incChange = scan.nextInt();
+        String incChange = scan.nextLine();
 
         switch(incChange){
-            case 1:
+            case "1":
                 iStorage.printIncomes();
                 System.out.println("CHANGE AMOUNT-\n" +
                                 "Choose Key of income to change:");
-                scan.nextLine();
                 //har valt att använda key för att specificera vilken inkomst som skall ändras
                 //alla tre cases fungerar på samma vis
                 String amountKey = scan.nextLine();
@@ -191,11 +188,10 @@ public class BudgetTrackerMenu {
                 iStorage.saveIncome();
                 break;
 
-            case 2:
+            case "2":
                 iStorage.printIncomes();
                 System.out.println("CHANGE DATE-\n" +
                         "Choose Key of income to change");
-                scan.nextLine();
                 String dateId = scan.nextLine();
                 //user ombeds ange datum på specifikt sätt
                 // för att lättare kunna söka på inkomster senare.
@@ -206,11 +202,10 @@ public class BudgetTrackerMenu {
                 break;
 
 
-            case 3:
+            case "3":
                 iStorage.printIncomes();
                 System.out.println("CHANGE CATEGORY-\n" +
                         "Choose Key of income to change");
-                scan.nextLine();
                 String catId = scan.nextLine();
                 System.out.println("State new category - Salary, Csn or Sales:");
                 //scanner så att sträng uppfattas som enum genom toUpperCase
@@ -234,14 +229,13 @@ public class BudgetTrackerMenu {
                 "[2] Date\n" +
                 "[3] Expense source\n");
 
-        int expChange = scan.nextInt();
+        String expChange = scan.nextLine();
 
         switch(expChange){
-            case 1:
+            case "1":
                 eStorage.printExpenses();
                 System.out.println("CHANGE AMOUNT-\n" +
                         "Choose Key of expense to change:");
-                scan.nextLine();
                 //har valt att använda key för att specificera vilken expense som skall ändras
                 //alla tre cases fungerar på samma vis
                 String amountKey = scan.nextLine();
@@ -251,11 +245,10 @@ public class BudgetTrackerMenu {
                 eStorage.saveExpense();
                 break;
 
-            case 2:
+            case "2":
                 iStorage.printIncomes();
                 System.out.println("CHANGE DATE-\n" +
                         "Choose Key of expense to change");
-                scan.nextLine();
                 String dateId = scan.nextLine();
                 //user ombeds ange datum på specifikt sätt
                 // för att lättare kunna söka på inkomster senare.
@@ -265,11 +258,10 @@ public class BudgetTrackerMenu {
                 eStorage.saveExpense();
                 break;
 
-            case 3:
+            case "3":
                 iStorage.printIncomes();
                 System.out.println("CHANGE CATEGORY-\n" +
                         "Choose Key of expense to change");
-                scan.nextLine();
                 String catId = scan.nextLine();
                 System.out.println("State new category - Salary, Csn or Sales:");
                 //scanner så att sträng uppfattas som enum genom toUpperCase
@@ -287,26 +279,39 @@ public class BudgetTrackerMenu {
     }
     public void budgetOverview(){
         System.out.println("Please select task.\n" +
-                "[1] Search income\n" +
-                "[2] Search expense\n" +
-                "[3] Monthly budget balance\n");
+                "[1] List All incomes by month\n" +
+                "[2] List All expenses by month\n" +
+                "[3] Search income\n" +
+                "[4] Search expense\n" +
+                "[5] Monthly budget balance\n");
+
         //budgetoverview choice
-        int bOverviewChoice = scan.nextInt();
+        String bOverviewChoice = scan.nextLine();
 
         switch (bOverviewChoice){
-            case 1:
+            case "1":
+                System.out.println("Enter date (month-YYYY) you want to list: ");
+                String monthlyIncSearch = scan.nextLine();
+                iStorage.printMonthlyIncomes(monthlyIncSearch);
+                break;
+
+            case "2":
+                System.out.println("Enter date (month-YYYY) you want to list: ");
+                String monthlyExpSearch = scan.nextLine();
+                eStorage.printMonthlyExpenses(monthlyExpSearch);
+                break;
+
+            case "3":
                 System.out.println("Enter date (month-YYYY) you´re searching for: ");
-                scan.nextLine();
                 String overviewIncDate = scan.nextLine();
                 System.out.println("What income are you looking for:\n" +
-                "Salary, CSN or Sales");
+                        "Salary, CSN or Sales");
                 EIncomeCategory incValue = EIncomeCategory.valueOf(scan.next().toUpperCase());
                 iStorage.searchIncome(overviewIncDate,incValue);
                 break;
 
-            case 2:
+            case "4":
                 System.out.println("Enter date (month-YYYY) you´re searching for: ");
-                scan.nextLine();
                 String overviewExpDate = scan.nextLine();
                 System.out.println("What income are you looking for:\n" +
                         "Salary, CSN or Sales");
@@ -314,9 +319,8 @@ public class BudgetTrackerMenu {
                 eStorage.searchExpense(overviewExpDate,expValue);
                 break;
 
-            case 3:
+            case "5":
                 System.out.println("state month and date (month-YYYY):");
-                scan.nextLine();
                 String calcDate = scan.nextLine();
                 // incPerMonth och expPerMonth håller resultatet av metoden för att
                 //kunna använda dem och räkna ut saldo per månad.

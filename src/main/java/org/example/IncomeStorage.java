@@ -56,6 +56,12 @@ public class IncomeStorage {
         System.out.println("These are all saved incomes: ");
         allIncomes.forEach((key, value) -> System.out.println("Key: " +key + " -> " + value));
         }
+    public void printMonthlyIncomes(String monthlyIncSearh){
+        for (Income income : allIncomes.values()) {
+            if (monthlyIncSearh.equals(income.getDate())) {
+                System.out.println("All your " + monthlyIncSearh + " incomes are:\n" + income); }
+            }
+        }
 
 
     //metod som loopar igenom alla amounts i allIncomes och kollar efter incomes
@@ -76,10 +82,7 @@ public class IncomeStorage {
     public void searchIncome (String overDate, EIncomeCategory category) {
         for (Income income : allIncomes.values()) {
             if (overDate.equals(income.getDate()) && category.equals(income.getCategory())) {
-                System.out.println(category + " was Found:\n" + income);
-            } else {
-                System.out.println("Sorry no match was found!");
-            }
+                System.out.println(category + " was Found:\n" + income); }
         }
     }
 
