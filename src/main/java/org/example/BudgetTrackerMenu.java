@@ -89,22 +89,12 @@ public class BudgetTrackerMenu {
                     case 7:
                         System.out.println("BUDGET OVERVIEW\n" +
                                 "--------------------");
-                        iStorage.searchIncome("juni-2023", EIncomeCategory.SALARY);
+                        budgetOverview();
 
 
                         //skapa metod för räkna ihop expenses och räkna ut income kontra expense
                         /*
-                        System.out.println("state month and date (month-YYYY):");
-                        scan.nextLine();
-                        String calcDate = scan.nextLine();
-                        // incPerMonth och expPerMonth håller resultatet av metoden för att
-                        //kunna använda dem och räkna ut saldo per månad.
-                        double incPerMonth = iStorage.calcTotalIncomes(calcDate);
-                        double expPerMonth = eStorage.calcTotalExpenses(calcDate);
-                        System.out.println("Total incomes for " + calcDate + " is: " + incPerMonth);
-                        System.out.println("\nTotal expenses for " + calcDate + " is: " + expPerMonth);
-                        System.out.println("\nMoney left in " + calcDate + " after expenses is paid: "
-                                + (incPerMonth - expPerMonth));
+
 
                          */
                         break;
@@ -305,6 +295,41 @@ public class BudgetTrackerMenu {
 
         switch (bOverviewChoice){
             case 1:
+                System.out.println("Enter date (month-YYYY) you´re searching for: ");
+                scan.nextLine();
+                String overviewIncDate = scan.nextLine();
+                System.out.println("What income are you looking for:\n" +
+                "Salary, CSN or Sales");
+                EIncomeCategory incValue = EIncomeCategory.valueOf(scan.next().toUpperCase());
+                iStorage.searchIncome(overviewIncDate,incValue);
+                break;
+
+            case 2:
+                System.out.println("Enter date (month-YYYY) you´re searching for: ");
+                scan.nextLine();
+                String overviewExpDate = scan.nextLine();
+                System.out.println("What income are you looking for:\n" +
+                        "Salary, CSN or Sales");
+                EExpenseCategory expValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
+                eStorage.searchExpense(overviewExpDate,expValue);
+                break;
+
+            case 3:
+                System.out.println("state month and date (month-YYYY):");
+                scan.nextLine();
+                String calcDate = scan.nextLine();
+                // incPerMonth och expPerMonth håller resultatet av metoden för att
+                //kunna använda dem och räkna ut saldo per månad.
+                double incPerMonth = iStorage.calcTotalIncomes(calcDate);
+                double expPerMonth = eStorage.calcTotalExpenses(calcDate);
+                System.out.println("Total incomes for " + calcDate + " is: " + incPerMonth);
+                System.out.println("\nTotal expenses for " + calcDate + " is: " + expPerMonth);
+                System.out.println("\nMoney left in " + calcDate + " after expenses is paid: "
+                        + (incPerMonth - expPerMonth));
+                break;
+
+            default:
+                System.out.println("Default");
 
         }
     }
@@ -325,93 +350,5 @@ public class BudgetTrackerMenu {
 
 
 
-/*
 
-
-
-
-                /*
-                System.out.println("Select income to change");
-                iStorage.allIncomes();
-                int change = input.nextInt();
-                System.out.println("You choose " + iStorage.totalIncomes.get(change - 1));
-                System.out.println("State your changes below.\nNew amount: ");
-                double newAmount = input.nextDouble();
-                System.out.println("New date (D/M/Y):");
-                input.nextLine();
-                String newDate = input.nextLine();
-                System.out.println("New type of income:");
-                //String newValue = input.nextLine();
-                EIncomeCategory newValue = EIncomeCategory.valueOf(input.next().toUpperCase());
-                Income income = new Income(newAmount, newDate, newValue);
-
-                iStorage.updateIncome(change, income);
-
-
-
-                 System.out.println("Please add amount: ");
-                double amount = input.nextDouble();
-                System.out.println("Please add date: ");
-                input.nextLine();
-                String date = input.nextLine();
-                System.out.println("Choose type of income: ");
-                EIncomeCategory value = EIncomeCategory.valueOf(input.next().toUpperCase());
-                Income newIncome = new Income(amount, date, value);
-                iStorage.addIncomeToArray(newIncome);
-                gson.toJson(iStorage.totalIncomes, fw);
-                fw.close();
-                System.out.println("Incomes :");
-                for (Income income : incomes) {
-                    System.out.println(income.toString());
- */
-
-
-
-
-
-/*
-Income incomeTest = new Income(1800, "juni-2023", EIncomeCategory.SALARY, "12345");
-        Expense expenseTest = new Expense(500,"juni-2023", EExpenseCategory.INSURANCE, "432" );
-
-        iStorage.addIncome(incomeTest);
-        iStorage.saveIncome();
-        iStorage.printIncomes();
-        iStorage.removeIncome("123");
-        iStorage.saveIncome();
-        iStorage.printIncomes();
-        iStorage.calcTotalIncomes();
-
-        eStorage.addExpense(expenseTest);
-        eStorage.saveExpense();
-        eStorage.printExpenses();
-
-
-
-
-        iStorage.saveIncome();
-        iStorage.printIncomes();
-
-
-     //iStorage.readFile();
-
-       // Income income1 = new Income(200, "2/4/23", EIncomeCategory.CSN);
-        //Income income2 = new Income(300, "4/4/23", EIncomeCategory.SALARY);
-
-        //TestIncome income = new TestIncome();
-       // income.setTypeOfIncome("Test");
-        // income.setAmount(200);
-
-
-
-    System.out.println("Please add amount: ");
-    double amount = input.nextDouble();
-    System.out.println("Please add date: ");
-    input.nextLine();
-    String date = input.nextLine();
-    System.out.println("Choose type of income: ");
-    EIncomeCategory value = EIncomeCategory.valueOf(input.next().toUpperCase());
-    Income newIncome = new Income(amount, date, value);
-    iStorage.addIncomeToArray(newIncome);
-    //iStorage.saveIncomeToFile();
-*/
 

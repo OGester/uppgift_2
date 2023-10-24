@@ -75,8 +75,11 @@ public class IncomeStorage {
     //overDate = user input för sökdatum
     public void searchIncome (String overDate, EIncomeCategory category) {
         for (Income income : allIncomes.values()) {
-            if (overDate.equals(income.getDate()) && category.equals(income.getCategory())){
-                System.out.println(income); }
+            if (overDate.equals(income.getDate()) && category.equals(income.getCategory())) {
+                System.out.println(category + " was Found:\n" + income);
+            } else {
+                System.out.println("Sorry no match was found!");
+            }
         }
     }
 

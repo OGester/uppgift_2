@@ -38,7 +38,7 @@ public class ExpenseStorage {
         Reader reader = new FileReader(new File(fileName));
         allExpenses = gson.fromJson(reader, type);
 
-        System.out.println("Expense list is retreived.");
+        System.out.println("Expense list is retreived.\n");
     }
 
 
@@ -67,6 +67,16 @@ public class ExpenseStorage {
         }
         //System.out.println("total :" + incSum);
         return expSum;
+    }
+
+    public void searchExpense (String overDate, EExpenseCategory category) {
+        for (Expense expense : allExpenses.values()) {
+            if (overDate.equals(expense.getDate()) && category.equals(expense.getCategory())) {
+                System.out.println(category + " was Found:\n" + expense);
+            } else {
+                System.out.println("Sorry no match was found!");
+            }
+        }
     }
 
     //skapa metod för att ändra inkomst
