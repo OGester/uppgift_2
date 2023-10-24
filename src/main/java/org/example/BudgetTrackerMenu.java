@@ -305,7 +305,6 @@ public class BudgetTrackerMenu {
 
         switch (bOverviewChoice){
             case 1:
-                System.out.println("");
 
         }
     }
