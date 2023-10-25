@@ -56,12 +56,16 @@ public class IncomeStorage {
         System.out.println("These are all saved incomes: ");
         allIncomes.forEach((key, value) -> System.out.println("Key: " +key + " -> " + value));
         }
-    public void printMonthlyIncomes(String monthlyIncSearh){
+
+    public void printMonthlyIncomes(String monthlyIncSearh) {
+        System.out.println("Your incomes for " + monthlyIncSearh + ":");
         for (Income income : allIncomes.values()) {
             if (monthlyIncSearh.equals(income.getDate())) {
-                System.out.println("All your " + monthlyIncSearh + " incomes are:\n" + income); }
+                System.out.println(income);
+                }
             }
         }
+
 
 
     //metod som loopar igenom alla amounts i allIncomes och kollar efter incomes

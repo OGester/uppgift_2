@@ -57,9 +57,10 @@ public class ExpenseStorage {
     }
 
     public void printMonthlyExpenses(String monthlyExpSearh){
+        System.out.println("Your expenses for " + monthlyExpSearh + ":");
         for (Expense expense : allExpenses.values()) {
             if (monthlyExpSearh.equals(expense.getDate())) {
-                System.out.println("All your " + monthlyExpSearh + " expenses are:\n" + expense); }
+                System.out.println(expense); }
         }
     }
 

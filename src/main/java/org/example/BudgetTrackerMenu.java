@@ -45,7 +45,8 @@ public class BudgetTrackerMenu {
                         "[4] Add expense\n" +
                         "[5] Remove expense\n" +
                         "[6] Change expense\n" +
-                        "[7] Budget overview");
+                        "[7] Budget overview\n" +
+                        "\nType exit to quit program.");
 
                 String userChoice = scan.nextLine();
 
@@ -54,50 +55,53 @@ public class BudgetTrackerMenu {
                         System.out.println("ADD INCOME\n" +
                                     "--------------------");
                         addIncome();
+                        enterToContinue();
                         break;
 
                     case "2":
                         System.out.println("REMOVE INCOME\n" +
                                     "--------------------");
                         removeIncome();
+                        enterToContinue();
                         break;
 
                     case "3":
                         System.out.println("CHANGE INCOME\n" +
                                     "--------------------");
                         changeIncome();
+                        enterToContinue();
                         break;
 
                     case "4":
                         System.out.println("ADD EXPENSE\n" +
                                 "--------------------");
                         addExpense();
+                        enterToContinue();
                         break;
 
                     case "5":
                         System.out.println("REMOVE EXPENSE\n" +
                                 "--------------------");
                         removeExpense();
+                        enterToContinue();
                         break;
 
                     case "6":
                         System.out.println("CHANGE EXPENSE\n" +
                                 "--------------------");
                         changeExpense();
+                        enterToContinue();
                         break;
 
                     case "7":
                         System.out.println("BUDGET OVERVIEW\n" +
                                 "--------------------");
                         budgetOverview();
-
-
-                        //skapa metod för räkna ihop expenses och räkna ut income kontra expense
-                        /*
-
-
-                         */
+                        enterToContinue();
                         break;
+
+                    case "exit":
+                        System.exit(0);
 
 
                     default:
@@ -184,6 +188,7 @@ public class BudgetTrackerMenu {
                 String amountKey = scan.nextLine();
                 System.out.println("State new amount");
                 double amountChange = scan.nextDouble();
+                scan.nextLine();
                 iStorage.changeIncomeAmount(amountKey, amountChange);
                 iStorage.saveIncome();
                 break;
@@ -241,12 +246,13 @@ public class BudgetTrackerMenu {
                 String amountKey = scan.nextLine();
                 System.out.println("State new amount");
                 double amountChange = scan.nextDouble();
+                scan.nextLine();
                 eStorage.changeExpenseAmount(amountKey, amountChange);
                 eStorage.saveExpense();
                 break;
 
             case "2":
-                iStorage.printIncomes();
+                eStorage.printExpenses();
                 System.out.println("CHANGE DATE-\n" +
                         "Choose Key of expense to change");
                 String dateId = scan.nextLine();
@@ -259,7 +265,7 @@ public class BudgetTrackerMenu {
                 break;
 
             case "3":
-                iStorage.printIncomes();
+                eStorage.printExpenses();
                 System.out.println("CHANGE CATEGORY-\n" +
                         "Choose Key of expense to change");
                 String catId = scan.nextLine();
@@ -313,8 +319,8 @@ public class BudgetTrackerMenu {
             case "4":
                 System.out.println("Enter date (month-YYYY) you´re searching for: ");
                 String overviewExpDate = scan.nextLine();
-                System.out.println("What income are you looking for:\n" +
-                        "Salary, CSN or Sales");
+                System.out.println("What expense are you looking for:\n" +
+                        "Rent, Elecricalbil, Phone, Internet, Food, Insurance, Loan, Misc");
                 EExpenseCategory expValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
                 eStorage.searchExpense(overviewExpDate,expValue);
                 break;
@@ -326,10 +332,14 @@ public class BudgetTrackerMenu {
                 //kunna använda dem och räkna ut saldo per månad.
                 double incPerMonth = iStorage.calcTotalIncomes(calcDate);
                 double expPerMonth = eStorage.calcTotalExpenses(calcDate);
-                System.out.println("Total incomes for " + calcDate + " is: " + incPerMonth);
-                System.out.println("\nTotal expenses for " + calcDate + " is: " + expPerMonth);
+                iStorage.printMonthlyIncomes(calcDate);
+                System.out.println("\nTotal incomes for " + calcDate + " is: " + incPerMonth +
+                        ":-\n------------------------------");
+                eStorage.printMonthlyExpenses(calcDate);
+                System.out.println("\nTotal expenses for " + calcDate + " is: " + expPerMonth +
+                        ":-\n------------------------------");
                 System.out.println("\nMoney left in " + calcDate + " after expenses is paid: "
-                        + (incPerMonth - expPerMonth));
+                        + (incPerMonth - expPerMonth) +":-\n");
                 break;
 
             default:
@@ -337,6 +347,15 @@ public class BudgetTrackerMenu {
 
         }
     }
+    public void enterToContinue() {
+        try {
+            System.out.println("Press ENTER to continue");
+            System.in.read();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }
 
 

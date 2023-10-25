@@ -8,7 +8,7 @@
   "4321": {
     "category": "FOOD",
     "id": "4321",
-    "amount": 3204.0,
+    "amount": 3500.0,
     "date": "juli-2023"
   },
   "435": {
@@ -20,7 +20,13 @@
   "26": {
     "category": "PHONE",
     "id": "26",
-    "amount": 395.0,
+    "amount": 350.0,
+    "date": "juli-2023"
+  },
+  "64": {
+    "category": "FOOD",
+    "id": "64",
+    "amount": 600.0,
     "date": "juni-2023"
   }
 }
