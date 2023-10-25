@@ -1,32 +1,8 @@
 {
-  "321": {
-    "category": "INTERNET",
-    "id": "321",
-    "amount": 645.0,
-    "date": "juli-2023"
-  },
-  "4321": {
-    "category": "FOOD",
-    "id": "4321",
-    "amount": 3500.0,
-    "date": "juli-2023"
-  },
-  "435": {
-    "category": "RENT",
-    "id": "435",
-    "amount": 3000.0,
-    "date": "juni-2023"
-  },
   "26": {
     "category": "PHONE",
     "id": "26",
     "amount": 350.0,
     "date": "juli-2023"
-  },
-  "64": {
-    "category": "FOOD",
-    "id": "64",
-    "amount": 600.0,
-    "date": "juni-2023"
   }
 }

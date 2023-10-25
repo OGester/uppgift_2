@@ -1,32 +1,8 @@
 {
-  "1234": {
-    "category": "SALARY",
-    "id": "1234",
-    "amount": 1800.0,
-    "date": "augusti-2023"
-  },
   "500": {
     "category": "SALARY",
     "id": "500",
     "amount": 550.0,
     "date": "mars-2023"
-  },
-  "102": {
-    "category": "SALARY",
-    "id": "102",
-    "amount": 4000.0,
-    "date": "juni-2023"
-  },
-  "103": {
-    "category": "CSN",
-    "id": "103",
-    "amount": 13000.0,
-    "date": "juni-2023"
-  },
-  "364": {
-    "category": "SALARY",
-    "id": "364",
-    "amount": 15000.0,
-    "date": "juli-2023"
   }
 }

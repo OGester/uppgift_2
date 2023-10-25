@@ -27,7 +27,7 @@ public class ExpenseStorage {
         FileWriter fw = new FileWriter(new File(fileName));
         gson.toJson(allExpenses, fw);
         fw.close();
-        System.out.println("Expenses Saved!");
+        System.out.println("--Changes has been saved--\n");
     }
 
 
