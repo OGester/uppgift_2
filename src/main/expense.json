@@ -4,5 +4,11 @@
     "id": "26",
     "amount": 350.0,
     "date": "juli-2023"
+  },
+  "2030": {
+    "category": "PHONE",
+    "id": "2030",
+    "amount": 200.0,
+    "date": "november-2023"
   }
 }

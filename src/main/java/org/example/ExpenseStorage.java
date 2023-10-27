@@ -55,7 +55,7 @@ public class ExpenseStorage {
             System.out.println(expense);
         }
     }
-
+    //tar user input för att kunna lista utgifter månadsvis, loopar igenom Mappen och söker efter angivet datum
     public void printMonthlyExpenses(String monthlyExpSearh){
         System.out.println("Your expenses for " + monthlyExpSearh + ":");
         for (Expense expense : allExpenses.values()) {
@@ -65,7 +65,8 @@ public class ExpenseStorage {
     }
 
 
-    //metod som loopar igenom alla amounts i allIncomes och räknar ihop dem.
+    //metod som loopar igenom alla amounts i allExpenses och kollar efter expenses
+    //som matchar input baserat på datum och räknar ihop dem.
     public double calcTotalExpenses(String calcDate) {
         double expSum = 0;
         for (Expense expense : allExpenses.values()) {
@@ -73,10 +74,10 @@ public class ExpenseStorage {
                 expSum += expense.getAmount();
             }
         }
-        //System.out.println("total :" + incSum);
         return expSum;
     }
-
+    //sökmetod för att hitta specifik utgift
+    //overDate (OverviewDate) = user input för sökdatum
     public void searchExpense (String overDate, EExpenseCategory category) {
         for (Expense expense : allExpenses.values()) {
             if (overDate.equals(expense.getDate()) && category.equals(expense.getCategory())) {
@@ -87,7 +88,7 @@ public class ExpenseStorage {
         }
     }
 
-    //skapa metod för att ändra inkomst
+    //metoder för att ändra inkomst
     public void changeExpenseAmount(String id, double amount) {
         Expense expense = allExpenses.get(id);
         expense.setAmount(amount);

@@ -8,6 +8,7 @@ public class BudgetTrackerMenu {
 
         private Scanner scan = new Scanner(System.in);
         User logIn = new User();
+        //instansierar incomestorage och expensestorage så vi kommer åt metoderna i dem klasserna.
         IncomeStorage iStorage = new IncomeStorage();
         ExpenseStorage eStorage = new ExpenseStorage();
         private boolean isRunning = true;
@@ -17,6 +18,8 @@ public class BudgetTrackerMenu {
     }
 
     public void mainMenu() throws IOException {
+        //metoder som läser in Json filerna och pga type token så behöver det ske först annars kastar
+        //det fel när man försöker spara till fil.
         iStorage.readIncomeFile();
         eStorage.readExpenseFile();
 
@@ -27,11 +30,12 @@ public class BudgetTrackerMenu {
         String lastName = scan.nextLine();
         String hiUser = firstName + " " + lastName;
         //Sparar user i en array för eventuellt framtida utveckling för flera users.
+        //i dagsläget fyller det ingen funktion då det bara existerar under runtime.
         User user = new User(firstName, lastName);
         logIn.addUserToArray(user);
 
 
-        System.out.println("Hi " + hiUser + "\nWhat task would you like to do?");
+        System.out.println("Hi " + hiUser + "\nWhat task would you like to do?\n");
 
         while (isRunning)
 
@@ -136,7 +140,7 @@ public class BudgetTrackerMenu {
         System.out.println("Set Expense id number: ");
         String expenseId = scan.nextLine();
         System.out.println("Choose type of Expense\n " +
-                "(Rent, Elecricalbill, Phone, Internet, Food, Insurance, Loan, Misc): ");
+                "(Rent, Electricbill, Phone, Internet, Food, Insurance, Loan, Misc): ");
         EExpenseCategory expenseValue = EExpenseCategory.valueOf(scan.next().toUpperCase());
         System.out.println("Please add amount: ");
         double expenseAmount = scan.nextDouble();
@@ -167,8 +171,8 @@ public class BudgetTrackerMenu {
         eStorage.removeExpense(removeKey);
         eStorage.saveExpense();
     }
-//metod med inkluderad switch för user att välja vilka
-//ändringar man vill göra på sparde inkomster/ utgifter.
+    //metod med inkluderad switch för user att välja vilka
+    //ändringar man vill göra på sparde inkomster/ utgifter.
     public void changeIncome() throws IOException {
 
         System.out.println("What would you like to change?\n" +

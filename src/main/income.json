@@ -4,5 +4,11 @@
     "id": "500",
     "amount": 550.0,
     "date": "mars-2023"
+  },
+  "2010": {
+    "category": "SALARY",
+    "id": "2010",
+    "amount": 20000.0,
+    "date": "november-2023"
   }
 }

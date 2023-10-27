@@ -57,6 +57,7 @@ public class IncomeStorage {
         allIncomes.forEach((key, value) -> System.out.println("Key: " +key + " -> " + value));
         }
 
+    //tar user input för att kunna lista inkomster månadsvis, loopar igenom Mappen och söker efter angivet datum
     public void printMonthlyIncomes(String monthlyIncSearh) {
         System.out.println("Your incomes for " + monthlyIncSearh + ":");
         for (Income income : allIncomes.values()) {
@@ -69,19 +70,18 @@ public class IncomeStorage {
 
 
     //metod som loopar igenom alla amounts i allIncomes och kollar efter incomes
-    // som matchar input och räknar ihop dem.
+    //som matchar input baserat på datum och räknar ihop dem.
     public double calcTotalIncomes(String calcDate) {
         double incSum = 0;
         for (Income income : allIncomes.values()) {
-            if (calcDate.equals(income.getDate()))  {
+            if (calcDate.equals(income.getDate())) {
                 incSum += income.getAmount();
             }
         }
-        //System.out.println("total :" + incSum);
         return incSum;
     }
 
-    // sökmetod för att hitta specifik inkomst
+    //sökmetod för att hitta specifik inkomst
     //overDate = user input för sökdatum
     public void searchIncome (String overDate, EIncomeCategory category) {
         for (Income income : allIncomes.values()) {
@@ -90,7 +90,7 @@ public class IncomeStorage {
         }
     }
 
-    //skapa metoder för att ändra inkomst
+    //metoder för att ändra inkomst
    public void changeIncomeAmount(String amountKey, double amount) {
        Income income = allIncomes.get(amountKey);
        income.setAmount(amount);
