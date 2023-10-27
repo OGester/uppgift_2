@@ -57,10 +57,14 @@ public class ExpenseStorage {
     }
     //tar user input för att kunna lista utgifter månadsvis, loopar igenom Mappen och söker efter angivet datum
     public void printMonthlyExpenses(String monthlyExpSearh){
-        System.out.println("Your expenses for " + monthlyExpSearh + ":");
+        System.out.println(monthlyExpSearh + " Expenses:");
+        boolean found = false;
         for (Expense expense : allExpenses.values()) {
             if (monthlyExpSearh.equals(expense.getDate())) {
-                System.out.println(expense); }
+                System.out.println(expense);
+            found = true; }
+        } if (!found) {
+            System.out.println("not found");
         }
     }
 
@@ -69,24 +73,30 @@ public class ExpenseStorage {
     //som matchar input baserat på datum och räknar ihop dem.
     public double calcTotalExpenses(String calcDate) {
         double expSum = 0;
+        boolean found = false;
         for (Expense expense : allExpenses.values()) {
             if (calcDate.equals(expense.getDate())) {
                 expSum += expense.getAmount();
+                found = true;
             }
+        } if (!found) {
+            System.out.println("No matching expense found.");
         }
         return expSum;
     }
     //sökmetod för att hitta specifik utgift
     //overDate (OverviewDate) = user input för sökdatum
     public void searchExpense (String overDate, EExpenseCategory category) {
+        boolean found = false;
         for (Expense expense : allExpenses.values()) {
             if (overDate.equals(expense.getDate()) && category.equals(expense.getCategory())) {
                 System.out.println(category + " was Found:\n" + expense);
-            } else {
-                System.out.println("Sorry no match was found!");
-            }
+                found = true; }
+            } if (!found) {
+            System.out.println("No matching Expenses found.");
         }
     }
+
 
     //metoder för att ändra inkomst
     public void changeExpenseAmount(String id, double amount) {

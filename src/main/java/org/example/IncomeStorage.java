@@ -59,12 +59,18 @@ public class IncomeStorage {
 
     //tar user input för att kunna lista inkomster månadsvis, loopar igenom Mappen och söker efter angivet datum
     public void printMonthlyIncomes(String monthlyIncSearh) {
-        System.out.println("Your incomes for " + monthlyIncSearh + ":");
+        boolean found = false;
+        System.out.println(monthlyIncSearh + " Incomes:");
         for (Income income : allIncomes.values()) {
             if (monthlyIncSearh.equals(income.getDate())) {
                 System.out.println(income);
+                found = true;
                 }
-            }
+            //om sökdatum ej hittas printas detta i konsollen
+            //lagd utanför loopen för att inte upprepas för varje objekt i Mappen.
+            }if (!found) {
+            System.out.println("not found");
+        }
         }
 
 
@@ -73,10 +79,14 @@ public class IncomeStorage {
     //som matchar input baserat på datum och räknar ihop dem.
     public double calcTotalIncomes(String calcDate) {
         double incSum = 0;
+        boolean found = false;
         for (Income income : allIncomes.values()) {
             if (calcDate.equals(income.getDate())) {
                 incSum += income.getAmount();
+                found = true;
             }
+        }if (!found) {
+            System.out.println("No matching incomes found.");
         }
         return incSum;
     }
@@ -84,9 +94,13 @@ public class IncomeStorage {
     //sökmetod för att hitta specifik inkomst
     //overDate = user input för sökdatum
     public void searchIncome (String overDate, EIncomeCategory category) {
+        boolean found = false;
         for (Income income : allIncomes.values()) {
             if (overDate.equals(income.getDate()) && category.equals(income.getCategory())) {
-                System.out.println(category + " was Found:\n" + income); }
+                System.out.println(category + " was Found:\n" + income);
+            found = true;}
+        } if (!found) {
+            System.out.println("No matching incomes found.");
         }
     }
 
